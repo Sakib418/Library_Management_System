@@ -1,5 +1,4 @@
 
-
 export interface IBook {
   title: string,
   author: string,
@@ -8,4 +7,9 @@ export interface IBook {
   description?: string,
   copies: number,
   available?: boolean,
+  
+}
+
+export interface BookInterfaceMethod{
+   updateAvailability() : void;
 }
