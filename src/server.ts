@@ -10,10 +10,9 @@ const PORT = 5000;
 
 async function main() {
     try{
-
        await mongoose.connect(process.env.MONGO_URI as string);
        server = app.listen(PORT, () => {
-        console.log(`App is listening on port ${PORT}`);
+       console.log(`App is listening on port ${PORT}`);
        })
 
     }catch(error){
