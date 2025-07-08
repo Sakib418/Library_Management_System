@@ -4,11 +4,8 @@ import { Borrow } from "../models/borrow.models";
 
 
 
-export const borrowRoutes = express.Router();
 
-
-
-
+ export const borrowRoutes = express.Router();
 
 
 
@@ -70,8 +67,9 @@ export const borrowRoutes = express.Router();
 // });
 
 
-borrowRoutes.post('/', async (req: Request, res : Response)  => {
-     try {
+borrowRoutes.post('/', async(req: Request, res : Response) => {
+     
+  try {
 
       const { book, quantity, dueDate } = req.body;
        
@@ -117,7 +115,7 @@ borrowRoutes.post('/', async (req: Request, res : Response)  => {
       data: borrowRecord
     });
   } catch (error) {
-    res.status(404).json({
+    res.status(500).json({
       success: false,
       message: 'Book can not be borrowed',
       error
@@ -169,4 +167,5 @@ borrowRoutes.get('/', async (req: Request, res: Response)=> {
       error
     });
      }
-})
+});
+
