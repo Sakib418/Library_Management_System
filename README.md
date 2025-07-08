@@ -42,10 +42,10 @@ npm install
 In the root of the project:
 
 
-MONGO_URI=mongodb+srv://<username>:<password>@cluster0.aine5.mongodb.net/?retryWrites=true&w=majority
+DATABASE_URL=mongodb+srv://<username>:<password>@cluster0.aine5.mongodb.net/?retryWrites=true&w=majority
 
 
-> Replace `<username>`,and `<password>` with your MongoDB Atlas credentials.
+> Replace DATABASE_URL with your MongoDB Atlas credentials.
 
 ### 4. Run the Application
 
