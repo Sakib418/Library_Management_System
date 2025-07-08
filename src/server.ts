@@ -6,11 +6,11 @@ import dotenv from 'dotenv';
 dotenv.config();
 //4ZY3ToBr5TbIp4JO
 let server: Server;
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 async function main() {
     try{
-       await mongoose.connect(process.env.MONGO_URI as string);
+       await mongoose.connect(`mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@cluster0.aine5.mongodb.net/LibraryDB?retryWrites=true&w=majority&appName=Cluster0`);
        server = app.listen(PORT, () => {
        console.log(`App is listening on port ${PORT}`);
        })
