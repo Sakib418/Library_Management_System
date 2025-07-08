@@ -70,11 +70,11 @@ export const borrowRoutes = express.Router();
 // });
 
 
-borrowRoutes.post('/', async (req: Request, res: Response) => {
+borrowRoutes.post('/', async (req: Request, res : Response)  => {
      try {
+
       const { book, quantity, dueDate } = req.body;
        
-      
       if (!book || !quantity || !dueDate) {
       return res.status(400).json({
         success: false,
@@ -117,7 +117,7 @@ borrowRoutes.post('/', async (req: Request, res: Response) => {
       data: borrowRecord
     });
   } catch (error) {
-    res.status(500).json({
+    res.status(404).json({
       success: false,
       message: 'Book can not be borrowed',
       error
