@@ -31,7 +31,7 @@ bookRoutes.post('/', async (req: Request, res: Response) => {
 
 bookRoutes.get('/', async (req: Request, res: Response) => {
     try{
-const { filter,sortBy = 'createdAt', sort = 'asc', limit = '10' } = req.query;
+const { filter,sortBy = 'createdAt', sort = 'asc', limit = '20' } = req.query;
 
      const query: any = {};
     if (filter) {
@@ -45,7 +45,7 @@ const { filter,sortBy = 'createdAt', sort = 'asc', limit = '10' } = req.query;
     
     const data = await Book.find(query)
       .sort(sortOption)
-      .limit(parseInt(limit as string, 10));
+      .limit(parseInt(limit as string, 20));
 
     res.status(200).json({
             success: true,
@@ -89,6 +89,17 @@ bookRoutes.put('/:bookId', async (req: Request, res: Response) => {
     const bookId = req.params.bookId;
     const updatebody = req.body;
     const data = await Book.findByIdAndUpdate(bookId,updatebody,{new: true});
+
+   if (!data) {
+      return res.status(404).json({
+        success: false,
+        message: 'Book not found',
+      });
+    }
+
+    data.updateAvailability();
+    await data.save();
+    
     res.status(200).json({
             success: true,
             message: "Book updated successfully",
