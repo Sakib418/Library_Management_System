@@ -3,13 +3,9 @@ import { bookRoutes } from './app/controllers/book.controller';
 import { borrowRoutes } from './app/controllers/borrow.controller';
 import cors from 'cors';
 
-
 const app: Application = express();
 
-// app.use(cors({
-//   origin: ['https://library-management-frontend-seven-mu.vercel.app'], // frontend URL
-//   credentials: true,
-// }));
+
 
 
 
@@ -17,8 +13,9 @@ app.use(express.json())
 
 app.use(cors({
   origin: 'https://library-management-frontend-seven-mu.vercel.app',
-  //credentials: true,
+  credentials: true,
 }));
+
 
 app.use("/api/books",bookRoutes);
 

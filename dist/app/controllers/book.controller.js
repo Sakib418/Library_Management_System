@@ -36,7 +36,7 @@ exports.bookRoutes.post('/', (req, res) => __awaiter(void 0, void 0, void 0, fun
 }));
 exports.bookRoutes.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { filter, sortBy = 'createdAt', sort = 'asc', limit = '10' } = req.query;
+        const { filter, sortBy = 'createdAt', sort = 'asc', limit = '20' } = req.query;
         const query = {};
         if (filter) {
             query.genre = filter;
@@ -45,7 +45,7 @@ exports.bookRoutes.get('/', (req, res) => __awaiter(void 0, void 0, void 0, func
         sortOption[sortBy] = sort === 'desc' ? -1 : 1;
         const data = yield book_models_1.Book.find(query)
             .sort(sortOption)
-            .limit(parseInt(limit, 10));
+            .limit(parseInt(limit, 20));
         res.status(200).json({
             success: true,
             message: "Books retrieved successfully",
@@ -83,6 +83,14 @@ exports.bookRoutes.put('/:bookId', (req, res) => __awaiter(void 0, void 0, void 
         const bookId = req.params.bookId;
         const updatebody = req.body;
         const data = yield book_models_1.Book.findByIdAndUpdate(bookId, updatebody, { new: true });
+        if (!data) {
+            return res.status(404).json({
+                success: false,
+                message: 'Book not found',
+            });
+        }
+        data.updateAvailability();
+        yield data.save();
         res.status(200).json({
             success: true,
             message: "Book updated successfully",
