@@ -7,8 +7,8 @@ import cors from 'cors';
 const app: Application = express();
 
 app.use(cors({
-  origin: 'https://library-management-frontend-seven-mu.vercel.app', // frontend URL
-  //credentials: true,
+  origin: ['https://library-management-frontend-seven-mu.vercel.app'], // frontend URL
+  credentials: true,
 }));
 
 app.use(express.json())
