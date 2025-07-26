@@ -11,13 +11,14 @@ const app: Application = express();
 //   credentials: true,
 // }));
 
+
+
+app.use(express.json())
+
 app.use(cors({
   origin: 'https://library-management-frontend-seven-mu.vercel.app',
   //credentials: true,
 }));
-
-app.use(express.json())
-
 
 app.use("/api/books",bookRoutes);
 
