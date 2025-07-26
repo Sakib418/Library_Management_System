@@ -7,7 +7,7 @@ import cors from 'cors';
 const app: Application = express();
 
 app.use(cors({
-  origin: 'http://localhost:5173', // frontend URL
+  origin: 'https://library-management-frontend-seven-mu.vercel.app', // frontend URL
   //credentials: true,
 }));
 
