@@ -12,8 +12,8 @@ const app: Application = express();
 // }));
 
 app.use(cors({
-  origin: "https://library-management-frontend-seven-mu.vercel.app",
-  credentials: true,
+  origin: 'https://library-management-frontend-seven-mu.vercel.app',
+  //credentials: true,
 }));
 
 app.use(express.json())
